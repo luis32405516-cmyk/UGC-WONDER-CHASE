@@ -1,0 +1,153 @@
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+-- Crear el ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = player:WaitForChild("PlayerGui")
+
+-- Variable para controlar el teletransporte continuo
+local teleporting = false
+local teleportObjectName = nil
+
+-- Función para teleportar al jugador a un objeto
+local function teleportToObject(objectName)
+    local object = game.Workspace.Pickups:FindFirstChild(objectName)
+    if object then
+        character:SetPrimaryPartCFrame(object.CFrame)
+    else
+        warn("Objeto no encontrado: " .. objectName)
+    end
+end
+
+-- Función para iniciar o detener el teletransporte continuo
+local function toggleTeleporting(objectName)
+    teleportObjectName = objectName
+    teleporting = not teleporting
+
+    if teleporting then
+        while teleporting do
+            teleportToObject(teleportObjectName)
+            wait(0.5) -- Espera medio segundo entre teletransportes
+        end
+    end
+end
+
+-- Función para teleportar al jugador a múltiples ubicaciones
+local function teleportToFinal()
+    local locations = {
+        workspace.ActiveStickers.ee01.Checkpoint.Button.button,
+        workspace.ActiveStickers.ee02.Checkpoint.Button.button,
+        workspace.ActiveStickers.ee03.Checkpoint.Button.button,
+        workspace.ActiveStickers.ee04.Checkpoint.Button.button,
+        workspace.ActiveStickers.ee05.Checkpoint.Button.button,
+        workspace.ActiveStickers.ee06.Checkpoint.Button.button,
+        workspace.ActiveStickers.ee07.Checkpoint.Button.button,
+        workspace.ActiveStickers.ee08.Checkpoint.Button.button,
+        workspace.ActiveStickers.ee09.Checkpoint.Button.button,
+        workspace.ActiveStickers.ee10.Checkpoint.Button.button,
+        workspace.ActiveStickers.ee11.Checkpoint.Button.button,
+        workspace.ActiveStickers.ee12.Checkpoint.Button.button,
+        workspace.ActiveStickers.ee13.Checkpoint.Button.button,
+        workspace.ActiveStickers.ee14.Checkpoint.Button.button,
+        workspace.ActiveStickers.ee15.Checkpoint.Button.button,
+    }
+
+    for _, location in ipairs(locations) do
+        if location then
+            character:SetPrimaryPartCFrame(location.CFrame)
+            wait(0.5) -- Espera medio segundo antes de teleportar a la siguiente ubicación
+        else
+            warn("Ubicación no encontrada.")
+        end
+    end
+end
+
+-- Función para teleportar a múltiples ubicaciones de forma manual
+local function teleportToMultiple()
+    local locations = {
+        workspace.PickupSlots["RevealPickupsAnna-2"].Default,
+        workspace.PickupSlots["RevealPickupsFreddie-1"].Default,
+        workspace.PickupSlots["RevealPickupsFreddie-2"].Default,
+    }
+
+    for _, location in ipairs(locations) do
+        if location then
+            character:SetPrimaryPartCFrame(location.CFrame)
+            wait(5.0) -- Espera medio segundo entre teleportaciones
+        else
+            warn("Ubicación no encontrada.")
+        end
+    end
+end
+
+-- Crear botones para cada objeto
+local objectNames = {"Default"}
+
+for i, objectName in ipairs(objectNames) do
+    local button = Instance.new("TextButton")
+    button.Size = UDim2.new(0, 100, 0, 50)
+    button.Position = UDim2.new(0, 10, 0, (i-1) * 60 + 10)  -- Posición dinámica para cada botón
+    button.Text = "OBJETO " .. objectName
+    button.Parent = screenGui
+
+    -- Conectar el evento de clic
+    button.MouseButton1Click:Connect(function()
+        toggleTeleporting(objectName)
+    end)
+end
+
+-- Crear botón para el teletransporte múltiple
+local multipleButton = Instance.new("TextButton")
+multipleButton.Size = UDim2.new(0, 100, 0, 50)
+multipleButton.Position = UDim2.new(0, 10, 0, (#objectNames) * 60 + 10)  -- Posición entre objetos y el botón de final
+multipleButton.Text = "NPC OBJETOS"
+multipleButton.Parent = screenGui
+
+-- Conectar el evento de clic para el botón de teletransporte múltiple
+multipleButton.MouseButton1Click:Connect(function()
+    teleportToMultiple()
+end)
+
+-- Crear botón para el teletransporte final
+local finalButton = Instance.new("TextButton")
+finalButton.Size = UDim2.new(0, 100, 0, 50)
+finalButton.Position = UDim2.new(0, 10, 0, (#objectNames + 1) * 60 + 10)  -- Posición después de los objetos y el botón múltiple
+finalButton.Text = "FIN"
+finalButton.Parent = screenGui
+
+-- Conectar el evento de clic para el botón de final
+finalButton.MouseButton1Click:Connect(function()
+    teleportToFinal()
+end)
+
+-- Permitir mover el HUD
+local dragging = false
+local dragInput
+local startPos
+
+screenGui.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = true
+        startPos = input.Position
+    end
+end)
+
+screenGui.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = false
+    end
+end)
+
+screenGui.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement and dragging then
+        local delta = input.Position - startPos
+        startPos = input.Position
+        screenGui.Position = UDim2.new(
+            screenGui.Position.X.Scale,
+            screenGui.Position.X.Offset + delta.X,
+            screenGui.Position.Y.Scale,
+            screenGui.Position.Y.Offset + delta.Y
+        )
+    end
+end)
+  
