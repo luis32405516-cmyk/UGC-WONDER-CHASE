@@ -27,7 +27,7 @@ local function toggleTeleporting(objectName)
     if teleporting then
         while teleporting do
             teleportToObject(teleportObjectName)
-            wait(0.5) -- Espera medio segundo entre teletransportes
+            wait(0.1) -- Espera menos de medio segundo entre teletransportes
         end
     end
 end
@@ -35,21 +35,21 @@ end
 -- Función para teleportar al jugador a múltiples ubicaciones
 local function teleportToFinal()
     local locations = {
-        workspace.ActiveStickers.ee01.Checkpoint.Button.button,
-        workspace.ActiveStickers.ee02.Checkpoint.Button.button,
-        workspace.ActiveStickers.ee03.Checkpoint.Button.button,
-        workspace.ActiveStickers.ee04.Checkpoint.Button.button,
-        workspace.ActiveStickers.ee05.Checkpoint.Button.button,
-        workspace.ActiveStickers.ee06.Checkpoint.Button.button,
-        workspace.ActiveStickers.ee07.Checkpoint.Button.button,
-        workspace.ActiveStickers.ee08.Checkpoint.Button.button,
-        workspace.ActiveStickers.ee09.Checkpoint.Button.button,
-        workspace.ActiveStickers.ee10.Checkpoint.Button.button,
-        workspace.ActiveStickers.ee11.Checkpoint.Button.button,
-        workspace.ActiveStickers.ee12.Checkpoint.Button.button,
-        workspace.ActiveStickers.ee13.Checkpoint.Button.button,
-        workspace.ActiveStickers.ee14.Checkpoint.Button.button,
-        workspace.ActiveStickers.ee15.Checkpoint.Button.button,
+        workspace.ActiveStickers.d6001.Checkpoint.Button.button,
+        workspace.ActiveStickers.d6002.Checkpoint.Button.button,
+        workspace.ActiveStickers.d6003.Checkpoint.Button.button,
+        workspace.ActiveStickers.d6004.Checkpoint.Button.button,
+        workspace.ActiveStickers.d6005.Checkpoint.Button.button,
+        workspace.ActiveStickers.d6006.Checkpoint.Button.button,
+        workspace.ActiveStickers.d6007.Checkpoint.Button.button,
+        workspace.ActiveStickers.d6008.Checkpoint.Button.button,
+        workspace.ActiveStickers.d6009.Checkpoint.Button.button,
+        workspace.ActiveStickers.d6010.Checkpoint.Button.button,
+        workspace.ActiveStickers.d6011.Checkpoint.Button.button,
+        workspace.ActiveStickers.d6012.Checkpoint.Button.button,
+        workspace.ActiveStickers.d6013.Checkpoint.Button.button,
+        workspace.ActiveStickers.d6014.Checkpoint.Button.button,
+        workspace.ActiveStickers.d6015.Checkpoint.Button.button,
     }
 
     for _, location in ipairs(locations) do
@@ -65,9 +65,10 @@ end
 -- Función para teleportar a múltiples ubicaciones de forma manual
 local function teleportToMultiple()
     local locations = {
-        workspace.PickupSlots["RevealPickupsAnna-2"].Default,
-        workspace.PickupSlots["RevealPickupsFreddie-1"].Default,
-        workspace.PickupSlots["RevealPickupsFreddie-2"].Default,
+        workspace.PickupSlots.RevealPickupsSteveEagle.Default,
+        workspace.PickupSlots.RevealPickupsSteveGecko.Default,
+        workspace.PickupSlots.RevealPickupsSteveMantisShrimp.Default,
+        workspace.PickupSlots.RevealPickupsSteveSnowLeopard.Default,
     }
 
     for _, location in ipairs(locations) do
