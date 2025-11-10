@@ -74,7 +74,7 @@ local function teleportToMultiple()
     for _, location in ipairs(locations) do
         if location then
             character:SetPrimaryPartCFrame(location.CFrame)
-            wait(5.0) -- Espera medio segundo entre teleportaciones
+            wait(0.2) -- Espera menos de medio segundo entre teleportaciones
         else
             warn("Ubicación no encontrada.")
         end
