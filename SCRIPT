@@ -40,7 +40,6 @@ local function teleportToFinal()
         workspace.Stickers.Cheetah.CheckpointNoSticker01A.Touch,
         workspace.Stickers.Cheetah.CheckpointNoSticker01B.Touch,
         workspace.ActiveStickers.d6002.Touch,
-        g
         workspace.Stickers.Cheetah.CheckpointNoSticker02A.Touch,
         workspace.ActiveStickers.d6003.Touch,
         workspace.ActiveStickers.d6004.Touch,
@@ -50,6 +49,21 @@ local function teleportToFinal()
         workspace.Stickers.SnowLeopard.CheckpointNoSticker06B.Touch,
         workspace.ActiveStickers.d6007.Touch,
         workspace.Stickers.SnowLeopard.CheckpointNoSticker07A.Touch,
+        workspace.ActiveStickers.d6008.Touch,
+        workspace.Stickers.SnowLeopard.CheckpointNoSticker08A.Touch,
+        workspace.ActiveStickers.d6009.Touch,
+        workspace.Stickers.SnowLeopard.CheckpointNoSticker09A.Touch,
+        workspace.ActiveStickers.d6010.Touch,
+        workspace.ActiveStickers.d6011.Touch,
+        workspace.ActiveStickers.d6012.Touch,
+        workspace.Stickers.Eagle.CheckpointNoSticker12A.Touch,
+        workspace.Stickers.Eagle.CheckpointNoSticker12A.Touch,
+        workspace.Stickers.Eagle.CheckpointNoSticker12B.Touch,
+        workspace.ActiveStickers.d6013.Touch,
+        workspace.Stickers.Eagle.CheckpointNoSticker13A.Touch,
+        workspace.Stickers.Eagle.CheckpointNoSticker14A.Touch,
+        workspace.ActiveStickers.d6014.Touch,
+        workspace.ActiveStickers.d6015.Touch,
         workspace.Utility.Teleporters.Portal_to_Wc.Portal["Canvas Clouds"].Cylinder,
     }
 
@@ -152,4 +166,3 @@ screenGui.InputChanged:Connect(function(input)
         )
     end
 end)
-  
