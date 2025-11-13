@@ -96,6 +96,16 @@ local function teleportToMultiple()
     end
 end
 
+-- Función para teleportar a la ubicación única
+local function teleportToWin()
+    local winLocation = game.Workspace.Utility.Teleporters.Portal_to_Wc.Portal["Canvas Clouds"].Cylinder -- Cambia a la ubicación deseada
+    if winLocation then
+        character:SetPrimaryPartCFrame(winLocation.CFrame)
+    else
+        warn("Ubicación de ganar no encontrada.")
+    end
+end
+
 -- Crear botones para cada objeto
 local objectNames = {"Default"}
 
@@ -128,12 +138,24 @@ end)
 local finalButton = Instance.new("TextButton")
 finalButton.Size = UDim2.new(0, 100, 0, 50)
 finalButton.Position = UDim2.new(0, 10, 0, (#objectNames + 1) * 60 + 10)  -- Posición después de los objetos y el botón múltiple
-finalButton.Text = "FIN"
+finalButton.Text = "CHECKPOINTS"
 finalButton.Parent = screenGui
 
 -- Conectar el evento de clic para el botón de final
 finalButton.MouseButton1Click:Connect(function()
     teleportToFinal()
+end)
+
+-- Crear botón "GANAR"
+local winButton = Instance.new("TextButton")
+winButton.Size = UDim2.new(0, 100, 0, 50)
+winButton.Position = UDim2.new(0, 10, 0, (#objectNames + 1) * 60 + 10)  -- Posición después de todos los botones
+winButton.Text = "GANAR"
+winButton.Parent = screenGui
+
+-- Conectar el evento de clic para el botón "GANAR"
+winButton.MouseButton1Click:Connect(function()
+    teleportToWin()
 end)
 
 -- Permitir mover el HUD
