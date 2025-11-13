@@ -35,21 +35,22 @@ end
 -- Función para teleportar al jugador a múltiples ubicaciones
 local function teleportToFinal()
     local locations = {
-        workspace.ActiveStickers.d6001.Checkpoint.Button.button,
-        workspace.ActiveStickers.d6002.Checkpoint.Button.button,
-        workspace.ActiveStickers.d6003.Checkpoint.Button.button,
-        workspace.ActiveStickers.d6004.Checkpoint.Button.button,
-        workspace.ActiveStickers.d6005.Checkpoint.Button.button,
-        workspace.ActiveStickers.d6006.Checkpoint.Button.button,
-        workspace.ActiveStickers.d6007.Checkpoint.Button.button,
-        workspace.ActiveStickers.d6008.Checkpoint.Button.button,
-        workspace.ActiveStickers.d6009.Checkpoint.Button.button,
-        workspace.ActiveStickers.d6010.Checkpoint.Button.button,
-        workspace.ActiveStickers.d6011.Checkpoint.Button.button,
-        workspace.ActiveStickers.d6012.Checkpoint.Button.button,
-        workspace.ActiveStickers.d6013.Checkpoint.Button.button,
-        workspace.ActiveStickers.d6014.Checkpoint.Button.button,
-        workspace.ActiveStickers.d6015.Checkpoint.Button.button,
+        workspace.Stickers.Cheetah.CheckpointNoSticker00A.Touch,
+        workspace.ActiveStickers.d6001.Touch,
+        workspace.Stickers.Cheetah.CheckpointNoSticker01A.Touch,
+        workspace.Stickers.Cheetah.CheckpointNoSticker01B.Touch,
+        workspace.ActiveStickers.d6002.Touch,
+        g
+        workspace.Stickers.Cheetah.CheckpointNoSticker02A.Touch,
+        workspace.ActiveStickers.d6003.Touch,
+        workspace.ActiveStickers.d6004.Touch,
+        workspace.ActiveStickers.d6005.Touch,
+        workspace.ActiveStickers.d6006.Touch,
+        workspace.Stickers.SnowLeopard.CheckpointNoSticker06A.Touch,
+        workspace.Stickers.SnowLeopard.CheckpointNoSticker06B.Touch,
+        workspace.ActiveStickers.d6007.Touch,
+        workspace.Stickers.SnowLeopard.CheckpointNoSticker07A.Touch,
+        workspace.Utility.Teleporters.Portal_to_Wc.Portal["Canvas Clouds"].Cylinder,
     }
 
     for _, location in ipairs(locations) do
