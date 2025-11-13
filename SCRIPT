@@ -149,7 +149,7 @@ end)
 -- Crear botón "GANAR"
 local winButton = Instance.new("TextButton")
 winButton.Size = UDim2.new(0, 100, 0, 50)
-winButton.Position = UDim2.new(0, 10, 0, (#objectNames + 1) * 60 + 10)  -- Posición después de todos los botones
+winButton.Position = UDim2.new(0, 10, 0, (#objectNames + 2) * 60 + 10)  -- Posición después de todos los botones
 winButton.Text = "GANAR"
 winButton.Parent = screenGui
 
