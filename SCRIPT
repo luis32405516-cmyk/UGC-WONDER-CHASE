@@ -64,7 +64,6 @@ local function teleportToFinal()
         workspace.Stickers.Eagle.CheckpointNoSticker14A.Touch,
         workspace.ActiveStickers.d6014.Touch,
         workspace.ActiveStickers.d6015.Touch,
-        workspace.Utility.Teleporters.Portal_to_Wc.Portal["Canvas Clouds"].Cylinder,
     }
 
     for _, location in ipairs(locations) do
