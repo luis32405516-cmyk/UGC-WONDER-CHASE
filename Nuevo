@@ -1,53 +1,48 @@
--- HUD Library Script
+function Library:CreateWindow(title)
+    local window = Instance.new("ScreenGui")
+    local frame = Instance.new("Frame", window)
+    frame.Size = UDim2.new(0.3, 0, 0.5, 0)
+    frame.Position = UDim2.new(0.35, 0, 0.25, 0)
+    frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 
-local HUD = {}
-HUD.__index = HUD
+    local titleLabel = Instance.new("TextLabel", frame)
+    titleLabel.Size = UDim2.new(1, 0, 0.1, 0)
+    titleLabel.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    titleLabel.Text = title
+    titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 
-function HUD:new()
-    local self = setmetatable({}, HUD)
-    self.screenGui = Instance.new("ScreenGui")
-    self.frame = Instance.new("Frame", self.screenGui)
-    self.frame.Size = UDim2.new(1, 0, 1, 0)
-    self.frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-    self.frame.BackgroundTransparency = 0.5
-    
-    -- Añadir un Título
-    local title = Instance.new("TextLabel", self.frame)
-    title.Size = UDim2.new(0.8, 0, 0.1, 0)
-    title.Position = UDim2.new(0.1, 0, 0, 0)
-    title.Text = "Bienvenido a mi Juego"
-    title.TextColor3 = Color3.fromRGB(255, 215, 0)
-    title.TextScaled = true
-    title.BackgroundTransparency = 1
+    return {
+        Frame = frame,
+        CreateFolder = function(self, folderName)
+            local folderFrame = Instance.new("Frame", frame)
+            folderFrame.Size = UDim2.new(1, 0, 0.4, 0)
+            folderFrame.Position = UDim2.new(0, 0, 0.1, 0)
+            folderFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 
-    -- Añadir un Timer
-    self.timerLabel = Instance.new("TextLabel", self.frame)
-    self.timerLabel.Size = UDim2.new(0.2, 0, 0.1, 0)
-    self.timerLabel.Position = UDim2.new(0.8, 0, 0, 0)
-    self.timerLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    self.timerLabel.TextScaled = true
-    self.timerLabel.BackgroundTransparency = 1
-    
-    -- Añadir un botón
-    local button = Instance.new("TextButton", self.frame)
-    button.Size = UDim2.new(0.3, 0, 0.1, 0)
-    button.Position = UDim2.new(0.35, 0, 0.15, 0)
-    button.Text = "Click me!"
-    button.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
-    button.TextColor3 = Color3.fromRGB(255, 255, 255)
-    button.TextScaled = true
+            local folderLabel = Instance.new("TextLabel", folderFrame)
+            folderLabel.Size = UDim2.new(1, 0, 0.1, 0)
+            folderLabel.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+            folderLabel.Text = folderName
+            folderLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 
-    -- Conectar evento del botón
-    button.MouseButton1Click:Connect(function()
-        print("¡Botón clicado!")
-    end)
+            return {
+                Button = function(self, buttonLabel, callback)
+                    local button = Instance.new("TextButton", folderFrame)
+                    button.Size = UDim2.new(0.9, 0, 0.2, 0)
+                    button.Position = UDim2.new(0.05, 0, 0.2 + (self:GetButtonCount() * 0.25), 0)
+                    button.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+                    button.Text = buttonLabel
+                    button.TextColor3 = Color3.fromRGB(255, 255, 255)
 
-    self.screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-    return self
+                    button.MouseButton1Click:Connect(callback)
+
+                    return self
+                end,
+
+                GetButtonCount = function(self)
+                    return #folderFrame:GetChildren() - 1 -- Exclude the folderLabel
+                end
+            }
+        end
+    }
 end
-
-function HUD:updateTimer(timeLeft)
-    self.timerLabel.Text = "Tiempo: " .. timeLeft
-end
-
-return HUD
