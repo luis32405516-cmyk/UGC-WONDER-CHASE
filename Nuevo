@@ -1,0 +1,53 @@
+-- HUD Library Script
+
+local HUD = {}
+HUD.__index = HUD
+
+function HUD:new()
+    local self = setmetatable({}, HUD)
+    self.screenGui = Instance.new("ScreenGui")
+    self.frame = Instance.new("Frame", self.screenGui)
+    self.frame.Size = UDim2.new(1, 0, 1, 0)
+    self.frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    self.frame.BackgroundTransparency = 0.5
+    
+    -- Añadir un Título
+    local title = Instance.new("TextLabel", self.frame)
+    title.Size = UDim2.new(0.8, 0, 0.1, 0)
+    title.Position = UDim2.new(0.1, 0, 0, 0)
+    title.Text = "Bienvenido a mi Juego"
+    title.TextColor3 = Color3.fromRGB(255, 215, 0)
+    title.TextScaled = true
+    title.BackgroundTransparency = 1
+
+    -- Añadir un Timer
+    self.timerLabel = Instance.new("TextLabel", self.frame)
+    self.timerLabel.Size = UDim2.new(0.2, 0, 0.1, 0)
+    self.timerLabel.Position = UDim2.new(0.8, 0, 0, 0)
+    self.timerLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    self.timerLabel.TextScaled = true
+    self.timerLabel.BackgroundTransparency = 1
+    
+    -- Añadir un botón
+    local button = Instance.new("TextButton", self.frame)
+    button.Size = UDim2.new(0.3, 0, 0.1, 0)
+    button.Position = UDim2.new(0.35, 0, 0.15, 0)
+    button.Text = "Click me!"
+    button.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.TextScaled = true
+
+    -- Conectar evento del botón
+    button.MouseButton1Click:Connect(function()
+        print("¡Botón clicado!")
+    end)
+
+    self.screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+    return self
+end
+
+function HUD:updateTimer(timeLeft)
+    self.timerLabel.Text = "Tiempo: " .. timeLeft
+end
+
+return HUD
