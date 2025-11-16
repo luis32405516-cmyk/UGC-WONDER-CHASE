@@ -1,6 +1,7 @@
-Funtion library:CreateWindow(title)
+function library:CreateWindow(title)
     local w = Instance.new("ScreenGui")
-    local frame = Instance.new("Frame", window)
+    w.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")  -- Añadir el ScreenGui a PlayerGui
+    local frame = Instance.new("Frame", w)
     frame.Size = UDim2.new(0.3, 0, 0.5, 0)
     frame.Position = UDim2.new(0.35, 0, 0.25, 0)
     frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
@@ -40,9 +41,9 @@ Funtion library:CreateWindow(title)
                 end,
 
                 GetButtonCount = function(self)
-                    return #folderFrame:GetChildren() - 1 -- Exclude the folderLabel
+                    return #folderFrame:GetChildren() - 1 -- Excluir el folderLabel
                 end
             }
         end
     }
-end)
+end
