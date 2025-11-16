@@ -1,5 +1,3 @@
-local Library = {}
-
 function Library:CreateWindow(title)
     local window = Instance.new("ScreenGui")
     local frame = Instance.new("Frame", window)
@@ -47,66 +45,4 @@ function Library:CreateWindow(title)
             }
         end
     }
-end
-
-local w = Library:CreateWindow("UGC😈SCRIPT")
-
-local b = w:CreateFolder("RECOLECTAR")
-local e = w:CreateFolder("TERMINAR")
-
-local teleporting = false
-local teleportObjectName = nil
-
-local function teleportToObject(objectName)
-    local object = game.Workspace:FindFirstChild(objectName)
-    if object then
-        game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(object.CFrame)
-    else
-        warn("Objeto no encontrado: " .. objectName)
-    end
-end
-
-local function toggleTeleporting(objectName)
-    teleportObjectName = objectName
-    teleporting = not teleporting
-
-    if teleporting then
-        while teleporting do
-            teleportToObject(teleportObjectName)
-            wait(0.5)
-        end
-    end
-end
-
-b:Button("INICIAR", function()
-    local objectNames = {"robot"}
-    for _, objectName in ipairs(objectNames) do
-        toggleTeleporting(objectName)
-    end
-    
-    game:GetService("StarterGui"):SetCore("SendNotification", { 
-        Title = "TELETRANSPORTE ACTIVADO",
-        Text = "Iniciando teletransporte continuo para el objeto robot.",
-        Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"
-    })
-end)
-
-e:Button("INICIAR", function()
-    local player = game:GetService("Players").LocalPlayer
-    local destination = game.Workspace:FindFirstChild("WithdrawalZone") 
-
-    if destination then
-        player.Character:SetPrimaryPartCFrame(destination.CFrame)
-        game:GetService("StarterGui"):SetCore("SendNotification", { 
-            Title = "TELETRANSPORTADO",
-            Text = "Has sido teletransportado a la ubicación deseada.",
-            Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"
-        })
-    else
-        game:GetService("StarterGui"):SetCore("SendNotification", { 
-            Title = "ERROR",
-            Text = "No se encontró el destino.",
-            Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"
-        })
-    end
 end)
