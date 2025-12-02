@@ -73,35 +73,7 @@ end)
 
 c:Button("INICIAR", function()
     local locations = {
-        workspace.Stickers.Cheetah.CheckpointNoSticker00A:FindFirstChild("Touch"),
-        workspace.ActiveStickers.d6001:FindFirstChild("Touch"),
-        workspace.Stickers.Cheetah.CheckpointNoSticker01A:FindFirstChild("Touch"),
-        workspace.Stickers.Cheetah.CheckpointNoSticker01B:FindFirstChild("Touch"),
-        workspace.ActiveStickers.d6002:FindFirstChild("Touch"),
-        workspace.Stickers.Cheetah.CheckpointNoSticker02A:FindFirstChild("Touch"),
-        workspace.ActiveStickers.d6003:FindFirstChild("Touch"),
-        workspace.ActiveStickers.d6004:FindFirstChild("Touch"),
-        workspace.ActiveStickers.d6005:FindFirstChild("Touch"),
-        workspace.ActiveStickers.d6006:FindFirstChild("Touch"),
-        workspace.Stickers.SnowLeopard.CheckpointNoSticker06A:FindFirstChild("Touch"),
-        workspace.Stickers.SnowLeopard.CheckpointNoSticker06B:FindFirstChild("Touch"),
-        workspace.ActiveStickers.d6007:FindFirstChild("Touch"),
-        workspace.Stickers.SnowLeopard.CheckpointNoSticker07A:FindFirstChild("Touch"),
-        workspace.ActiveStickers.d6008:FindFirstChild("Touch"),
-        workspace.Stickers.SnowLeopard.CheckpointNoSticker08A:FindFirstChild("Touch"),
-        workspace.ActiveStickers.d6009:FindFirstChild("Touch"),
-        workspace.Stickers.SnowLeopard.CheckpointNoSticker09A:FindFirstChild("Touch"),
-        workspace.ActiveStickers.d6010:FindFirstChild("Touch"),
-        workspace.ActiveStickers.d6011:FindFirstChild("Touch"),
-        workspace.ActiveStickers.d6012:FindFirstChild("Touch"),
-        workspace.Stickers.Eagle.CheckpointNoSticker12A:FindFirstChild("Touch"),
-        workspace.Stickers.Eagle.CheckpointNoSticker12A:FindFirstChild("Touch"),
-        workspace.Stickers.Eagle.CheckpointNoSticker12B:FindFirstChild("Touch"),
-        workspace.ActiveStickers.d6013:FindFirstChild("Touch"),
-        workspace.Stickers.Eagle.CheckpointNoSticker13A:FindFirstChild("Touch"),
-        workspace.Stickers.Eagle.CheckpointNoSticker14A:FindFirstChild("Touch"),
-        workspace.ActiveStickers.d6014:FindFirstChild("Touch"),
-        workspace.ActiveStickers.d6015:FindFirstChild("Touch"),
+        workspace.Stickers.Cheetah.CheckpointNoSticker00A.Touch,
     }
 
     for _, location in ipairs(locations) do
