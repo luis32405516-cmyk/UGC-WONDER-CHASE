@@ -90,7 +90,6 @@ c:Button("INICIAR", function()
         workspace.ActiveStickers.d6008.Touch,
         workspace.Stickers.SnowLeopard.CheckpointNoSticker08A.Touch,
         workspace.ActiveStickers.d6009.Touch,
-        workspace.Stickers.SnowLeopard.CheckpointNoSticker09A.Touch,
     }
 
     for _, location in ipairs(locations) do
