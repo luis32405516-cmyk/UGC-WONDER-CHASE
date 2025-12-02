@@ -2,10 +2,10 @@ local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/bloo
 
 local w = library:CreateWindow("UGC😈SCRIPT")
 
-local b = w:CreateFolder("RECOLECTAR ")
-local c = w:CreateFolder("NPC=R ")
-local d = w:CreateFolder("CHECKPOINTS ")
-local e = w:CreateFolder("TERMINAR ")
+local a = w:CreateFolder("RECOLECTAR ")
+local b = w:CreateFolder("NPC=R ")
+local c = w:CreateFolder("CHECKPOINTS ")
+local d = w:CreateFolder("TERMINAR ")
 
 -- Variable para controlar el teletransporte continuo
 local teleporting = false
@@ -34,7 +34,7 @@ local function toggleTeleporting(objectName)
     end
 end
 
-b:Button("INICIAR TELETRANSPORTE", function()
+a:Button("INICIAR TELETRANSPORTE", function()
     local objectNames = {"Default"}
     for _, objectName in ipairs(objectNames) do
         toggleTeleporting(objectName)
@@ -47,7 +47,7 @@ b:Button("INICIAR TELETRANSPORTE", function()
     })
 end)
 
-c:Button("INICIAR", function()
+b:Button("INICIAR", function()
     local locations = {
         workspace.PickupSlots.RevealPickupsSteveEagle:FindFirstChild("Default"),
         workspace.PickupSlots.RevealPickupsSteveGecko:FindFirstChild("Default"),
@@ -71,78 +71,56 @@ c:Button("INICIAR", function()
     })
 end)
 
-d:Button("INICIAR", function()
-    -- Lista de ubicaciones donde buscar el objeto Touch
-    local targets = {
-        workspace.Stickers.Cheetah.CheckpointNoSticker00A,
-        workspace.ActiveStickers.d6001,
-        workspace.Stickers.Cheetah.CheckpointNoSticker01A,
-        workspace.Stickers.Cheetah.CheckpointNoSticker01B,
-        workspace.ActiveStickers.d6002,
-        workspace.Stickers.Cheetah.CheckpointNoSticker02A,
-        workspace.ActiveStickers.d6003,
-        workspace.ActiveStickers.d6004,
-        workspace.ActiveStickers.d6005,
-        workspace.ActiveStickers.d6006,
-        workspace.Stickers.SnowLeopard.CheckpointNoSticker06A,
-        workspace.Stickers.SnowLeopard.CheckpointNoSticker06B,
-        workspace.ActiveStickers.d6007,
-        workspace.Stickers.SnowLeopard.CheckpointNoSticker07A,
-        workspace.ActiveStickers.d6008,
-        workspace.Stickers.SnowLeopard.CheckpointNoSticker08A,
-        workspace.ActiveStickers.d6009,
-        workspace.Stickers.SnowLeopard.CheckpointNoSticker09A,
-        workspace.ActiveStickers.d6010,
-        workspace.ActiveStickers.d6011,
-        workspace.ActiveStickers.d6012,
-        workspace.Stickers.Eagle.CheckpointNoSticker12A,
-        workspace.Stickers.Eagle.CheckpointNoSticker12B,
-        workspace.ActiveStickers.d6013,
-        workspace.Stickers.Eagle.CheckpointNoSticker13A,
-        workspace.Stickers.Eagle.CheckpointNoSticker14A,
-        workspace.ActiveStickers.d6014,
-        workspace.ActiveStickers.d6015,
+c:Button("INICIAR", function()
+    local locations = {
+        workspace.Stickers.Cheetah.CheckpointNoSticker00A:FindFirstChild("Touch"),
+        workspace.ActiveStickers.d6001:FindFirstChild("Touch"),
+        workspace.Stickers.Cheetah.CheckpointNoSticker01A:FindFirstChild("Touch"),
+        workspace.Stickers.Cheetah.CheckpointNoSticker01B:FindFirstChild("Touch"),
+        workspace.ActiveStickers.d6002:FindFirstChild("Touch"),
+        workspace.Stickers.Cheetah.CheckpointNoSticker02A:FindFirstChild("Touch"),
+        workspace.ActiveStickers.d6003:FindFirstChild("Touch"),
+        workspace.ActiveStickers.d6004:FindFirstChild("Touch"),
+        workspace.ActiveStickers.d6005:FindFirstChild("Touch"),
+        workspace.ActiveStickers.d6006:FindFirstChild("Touch"),
+        workspace.Stickers.SnowLeopard.CheckpointNoSticker06A:FindFirstChild("Touch"),
+        workspace.Stickers.SnowLeopard.CheckpointNoSticker06B:FindFirstChild("Touch"),
+        workspace.ActiveStickers.d6007:FindFirstChild("Touch"),
+        workspace.Stickers.SnowLeopard.CheckpointNoSticker07A:FindFirstChild("Touch"),
+        workspace.ActiveStickers.d6008:FindFirstChild("Touch"),
+        workspace.Stickers.SnowLeopard.CheckpointNoSticker08A:FindFirstChild("Touch"),
+        workspace.ActiveStickers.d6009:FindFirstChild("Touch"),
+        workspace.Stickers.SnowLeopard.CheckpointNoSticker09A:FindFirstChild("Touch"),
+        workspace.ActiveStickers.d6010:FindFirstChild("Touch"),
+        workspace.ActiveStickers.d6011:FindFirstChild("Touch"),
+        workspace.ActiveStickers.d6012:FindFirstChild("Touch"),
+        workspace.Stickers.Eagle.CheckpointNoSticker12A:FindFirstChild("Touch"),
+        workspace.Stickers.Eagle.CheckpointNoSticker12A:FindFirstChild("Touch"),
+        workspace.Stickers.Eagle.CheckpointNoSticker12B:FindFirstChild("Touch"),
+        workspace.ActiveStickers.d6013:FindFirstChild("Touch"),
+        workspace.Stickers.Eagle.CheckpointNoSticker13A:FindFirstChild("Touch"),
+        workspace.Stickers.Eagle.CheckpointNoSticker14A:FindFirstChild("Touch"),
+        workspace.ActiveStickers.d6014:FindFirstChild("Touch"),
+        workspace.ActiveStickers.d6015:FindFirstChild("Touch"),
     }
 
-    local function getTargetPart(obj)
-        if not obj then return nil end
-        local touch = obj:FindFirstChild("Touch")
-        if touch then
-            if touch:IsA("BasePart") then
-                return touch
-            elseif touch:IsA("TouchTransmitter") or touch:IsA("TouchInterest") then
-                if touch.Parent and touch.Parent:IsA("BasePart") then
-                    return touch.Parent
-                end
-            end
-        end
-        return nil
-    end
-
-    local character = game.Players.LocalPlayer.Character
-    if not character or not character.PrimaryPart then
-        warn("Tu personaje no está cargado o falta PrimaryPart. Intenta nuevamente.")
-        return
-    end
-
-    for i, obj in ipairs(targets) do
-        local part = getTargetPart(obj)
-        if part then
-            character:SetPrimaryPartCFrame(part.CFrame)
-            wait(0.5)
+    for _, location in ipairs(locations) do
+        if location then
+            game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(location.CFrame)
+            wait(0.5) -- Espera de medio segundo entre teleportaciones
         else
-            warn(("Ubicación %d no encontrada o sin objeto teletransportable."):format(i))
+            warn("Ubicación no encontrada.")
         end
     end
 
-    game:GetService("StarterGui"):SetCore("SendNotification", {
-        Title = "TELETRANSPORTE FINALIZADO",
-        Text = "Has sido teletransportado a todas las ubicaciones.",
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = "TELEPOR FINALIZADO";
+        Text = "Has sido teletransportado a todas las ubicaciones.";
         Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"
     })
 end)
 
-e:Button("INICIAR", function()
+d:Button("INICIAR", function()
     local player = game:GetService("Players").LocalPlayer
     local destination = game.Workspace.Utility.Teleporters.Portal_to_Wc.Portal["Canvas Clouds"]:FindFirstChild("Cylinder") -- Cambia "Destino" por el nombre de tu objeto o destino
 
