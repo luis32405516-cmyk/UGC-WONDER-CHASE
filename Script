@@ -74,6 +74,13 @@ end)
 c:Button("INICIAR", function()
     local locations = {
         workspace.Stickers.Cheetah.CheckpointNoSticker00A.Touch,
+        workspace.ActiveStickers.d6001.Touch,
+        workspace.Stickers.Cheetah.CheckpointNoSticker01A.Touch,
+        workspace.Stickers.Cheetah.CheckpointNoSticker01B.Touch,
+        workspace.ActiveStickers.d6002.Touch,
+        workspace.Stickers.Cheetah.CheckpointNoSticker02A.Touch,
+        workspace.ActiveStickers.d6003.Touch,
+        workspace.ActiveStickers.d6004.Touch,
     }
 
     for _, location in ipairs(locations) do
