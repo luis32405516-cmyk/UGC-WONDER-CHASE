@@ -94,9 +94,6 @@ c:Button("INICIAR", function()
         workspace.ActiveStickers.d6010.Touch,
         workspace.ActiveStickers.d6011.Touch,
         workspace.ActiveStickers.d6012.Touch,
-        workspace.Stickers.Eagle.CheckpointNoSticker12A.Touch,
-        workspace.Stickers.Eagle.CheckpointNoSticker12A.Touch,
-        workspace.Stickers.Eagle.CheckpointNoSticker12B.Touch,
     }
 
     for _, location in ipairs(locations) do
