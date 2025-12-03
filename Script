@@ -79,52 +79,52 @@ b:Button("INICIAR", function()
 end)
 
 c:Button("INICIAR", function()
-    local locations = {
-        workspace.Stickers.Cheetah.CheckpointNoSticker00A.Touch,
-        workspace.ActiveStickers.d6001.Touch,
-        workspace.Stickers.Cheetah.CheckpointNoSticker01A.Touch,
-        workspace.Stickers.Cheetah.CheckpointNoSticker01B.Touch,
-        workspace.ActiveStickers.d6002.Touch,
-        workspace.Stickers.Cheetah.CheckpointNoSticker02A.Touch,
-        workspace.ActiveStickers.d6003.Touch,
-        workspace.ActiveStickers.d6004.Touch,
-        workspace.ActiveStickers.d6005.Touch,
-        workspace.ActiveStickers.d6006.Touch,
-        workspace.Stickers.SnowLeopard.CheckpointNoSticker06A.Touch,
-        workspace.Stickers.SnowLeopard.CheckpointNoSticker06B.Touch,
-        workspace.ActiveStickers.d6007.Touch,
-        workspace.Stickers.SnowLeopard.CheckpointNoSticker07A.Touch,
-        workspace.ActiveStickers.d6008.Touch,
-        workspace.Stickers.SnowLeopard.CheckpointNoSticker08A.Touch,
-        workspace.ActiveStickers.d6009.Touch,
-        workspace.ActiveStickers.d6010.Touch,
-        workspace.Stickers.SnowLeopard.CheckpointNoSticker09A.Touch,
-        workspace.ActiveStickers.d6011.Touch,
-        workspace.ActiveStickers.d6012.Touch,
-        workspace.Stickers.Eagle.CheckpointNoSticker12A.Touch,
-        workspace.ActiveStickers.d6013.Touch,
-        workspace.Stickers.Eagle.CheckpointNoSticker12B.Touch,
-        workspace.Stickers.Eagle.CheckpointNoSticker13A.Touch,
-        workspace.ActiveStickers.d6014.Touch,
-        workspace.Stickers.Eagle.CheckpointNoSticker14A.Touch,
-        workspace.ActiveStickers.d6015.Touch,
+    local checkpoints = {
+        workspace.Stickers.Cheetah:FindFirstChild("CheckpointNoSticker00A") and workspace.Stickers.Cheetah.CheckpointNoSticker00A:FindFirstChild("Touch"),
+        workspace.ActiveStickers:FindFirstChild("d6001") and workspace.ActiveStickers.d6001:FindFirstChild("Touch"),
+        workspace.Stickers.Cheetah:FindFirstChild("CheckpointNoSticker01A") and workspace.Stickers.Cheetah.CheckpointNoSticker01A:FindFirstChild("Touch"),
+        workspace.Stickers.Cheetah:FindFirstChild("CheckpointNoSticker01B") and workspace.Stickers.Cheetah.CheckpointNoSticker01B:FindFirstChild("Touch"),
+        workspace.ActiveStickers:FindFirstChild("d6002") and workspace.ActiveStickers.d6002:FindFirstChild("Touch"),
+        workspace.Stickers.Cheetah:FindFirstChild("CheckpointNoSticker02A") and workspace.Stickers.Cheetah.CheckpointNoSticker02A:FindFirstChild("Touch"),
+        workspace.ActiveStickers:FindFirstChild("d6003") and workspace.ActiveStickers.d6003:FindFirstChild("Touch"),
+        workspace.ActiveStickers:FindFirstChild("d6004") and workspace.ActiveStickers.d6004:FindFirstChild("Touch"),
+        workspace.ActiveStickers:FindFirstChild("d6005") and workspace.ActiveStickers.d6005:FindFirstChild("Touch"),
+        workspace.ActiveStickers:FindFirstChild("d6006") and workspace.ActiveStickers.d6006:FindFirstChild("Touch"),
+        workspace.Stickers.SnowLeopard:FindFirstChild("CheckpointNoSticker06A") and workspace.Stickers.SnowLeopard.CheckpointNoSticker06A:FindFirstChild("Touch"),
+        workspace.Stickers.SnowLeopard:FindFirstChild("CheckpointNoSticker06B") and workspace.Stickers.SnowLeopard.CheckpointNoSticker06B:FindFirstChild("Touch"),
+        workspace.ActiveStickers:FindFirstChild("d6007") and workspace.ActiveStickers.d6007:FindFirstChild("Touch"),
+        workspace.Stickers.SnowLeopard:FindFirstChild("CheckpointNoSticker07A") and workspace.Stickers.SnowLeopard.CheckpointNoSticker07A:FindFirstChild("Touch"),
+        workspace.ActiveStickers:FindFirstChild("d6008") and workspace.ActiveStickers.d6008:FindFirstChild("Touch"),
+        workspace.Stickers.SnowLeopard:FindFirstChild("CheckpointNoSticker08A") and workspace.Stickers.SnowLeopard.CheckpointNoSticker08A:FindFirstChild("Touch"),
+        workspace.ActiveStickers:FindFirstChild("d6009") and workspace.ActiveStickers.d6009:FindFirstChild("Touch"),
+        workspace.ActiveStickers:FindFirstChild("d6010") and workspace.ActiveStickers.d6010:FindFirstChild("Touch"),
+        workspace.Stickers.SnowLeopard:FindFirstChild("CheckpointNoSticker09A") and workspace.Stickers.SnowLeopard.CheckpointNoSticker09A:FindFirstChild("Touch"),
+        workspace.ActiveStickers:FindFirstChild("d6011") and workspace.ActiveStickers.d6011:FindFirstChild("Touch"),
+        workspace.ActiveStickers:FindFirstChild("d6012") and workspace.ActiveStickers.d6012:FindFirstChild("Touch"),
+        workspace.Stickers.Eagle:FindFirstChild("CheckpointNoSticker12A") and workspace.Stickers.Eagle.CheckpointNoSticker12A:FindFirstChild("Touch"),
+        workspace.ActiveStickers:FindFirstChild("d6013") and workspace.ActiveStickers.d6013:FindFirstChild("Touch"),
+        workspace.Stickers.Eagle:FindFirstChild("CheckpointNoSticker12B") and workspace.Stickers.Eagle.CheckpointNoSticker12B:FindFirstChild("Touch"),
+        workspace.Stickers.Eagle:FindFirstChild("CheckpointNoSticker13A") and workspace.Stickers.Eagle.CheckpointNoSticker13A:FindFirstChild("Touch"),
+        workspace.ActiveStickers:FindFirstChild("d6014") and workspace.ActiveStickers.d6014:FindFirstChild("Touch"),
+        workspace.Stickers.Eagle:FindFirstChild("CheckpointNoSticker14A") and workspace.Stickers.Eagle.CheckpointNoSticker14A:FindFirstChild("Touch"),
+        workspace.ActiveStickers:FindFirstChild("d6015") and workspace.ActiveStickers.d6015:FindFirstChild("Touch"),
     }
-    -- Eliminar duplicados creando una tabla de vistos
-    local seen = {}
-    for _, location in ipairs(locations) do
-        if location and location.CFrame and not seen[location] then
-            seen[location] = true
-            safeTeleport(location.CFrame)
+
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    local count = 0
+    for _, checkpoint in ipairs(checkpoints) do
+        if checkpoint and checkpoint:IsA("BasePart") then
+            char:SetPrimaryPartCFrame(checkpoint.CFrame)
             wait(0.5)
-        else
-            warn("Ubicación no encontrada o duplicada.")
+            count = count + 1
         end
     end
+
     game:GetService("StarterGui"):SetCore("SendNotification", { 
-        Title = "TELEPOR FINALIZADO",
-        Text = "Has sido teletransportado a todas las ubicaciones.",
-        Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150",
-        Duration = 3
+        Title = "TELEPOR FINALIZADO";
+        Text = "Teletransportado a " .. count .. " checkpoints!";
+        Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"
     })
 end)
 
