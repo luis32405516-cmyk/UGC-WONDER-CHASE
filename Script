@@ -101,7 +101,7 @@ c:Button("INICIAR", function()
         workspace.Stickers.SnowLeopard.CheckpointNoSticker09A.Touch,
         workspace.ActiveStickers.d6011.Touch,
         workspace.ActiveStickers.d6012.Touch,
-        workspace.Stickers.Eagle.CheckpointNoSticker12A,
+        workspace.Stickers.Eagle.CheckpointNoSticker12A.Touch,
         workspace.ActiveStickers.d6013.Touch,
         workspace.Stickers.Eagle.CheckpointNoSticker12B.Touch,
         workspace.Stickers.Eagle.CheckpointNoSticker13A.Touch,
